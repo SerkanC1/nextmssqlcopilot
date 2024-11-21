@@ -16,7 +16,9 @@ export async function POST(request) {
 
     if (result.recordset.length > 0) {
       const user = result.recordset[0];
-      const isPasswordValid = await bcrypt.compare(password, user.Password_);
+      // const isPasswordValid = await bcrypt.compare(password, user.Password_);
+      const isPasswordValid = password === user.Password_;
+
 
       if (isPasswordValid) {
         return NextResponse.json({ message: 'Login successful' });
